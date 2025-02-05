@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
-import Sheet from '@/lib/registry/default/ui/sheet/Sheet.vue'
-import SheetContent from '@/lib/registry/default/ui/sheet/SheetContent.vue'
+import type { SidebarProps } from '.'
+import { Sheet, SheetContent } from '@/lib/registry/default/ui/sheet'
 import { cn } from '@/lib/utils'
 import { SIDEBAR_WIDTH_MOBILE, useSidebar } from './utils'
 
@@ -9,12 +8,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<{
-  side?: 'left' | 'right'
-  variant?: 'sidebar' | 'floating' | 'inset'
-  collapsible?: 'offcanvas' | 'icon' | 'none'
-  class?: HTMLAttributes['class']
-}>(), {
+const props = withDefaults(defineProps<SidebarProps>(), {
   side: 'left',
   variant: 'sidebar',
   collapsible: 'offcanvas',
@@ -82,7 +76,7 @@ const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
     >
       <div
         data-sidebar="sidebar"
-        class="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+        class="flex h-full w-full flex-col text-sidebar-foreground bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
       >
         <slot />
       </div>
